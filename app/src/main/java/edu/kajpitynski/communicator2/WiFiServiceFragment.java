@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class WiFiServiceFragment extends Fragment {
 
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
     private MyWiFiServiceRecyclerViewAdapter mAdapter;
@@ -35,21 +32,14 @@ public class WiFiServiceFragment extends Fragment {
     }
 
     @SuppressWarnings("unused")
-    public static WiFiServiceFragment newInstance(int columnCount) {
+    public static WiFiServiceFragment newInstance() {
         WiFiServiceFragment fragment = new WiFiServiceFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -61,11 +51,7 @@ public class WiFiServiceFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
             mAdapter = new MyWiFiServiceRecyclerViewAdapter(mListener);
             recyclerView.setAdapter(mAdapter);
         }
