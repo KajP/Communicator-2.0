@@ -8,20 +8,43 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class ClientSocketHandler {
+public class ClientSocketHandler extends Thread {
+
     private static final String TAG = "ClientSocketHandler";
+    private final int port;
+    private Handler handler;
+    private ChatManager chat;
+    private InetAddress mAddress;
 
-    private ClientSocketHandler() {
+    public ClientSocketHandler(Handler handler, InetAddress groupOwnerAddress, int port) {
+        this.handler = handler;
+        this.mAddress = groupOwnerAddress;
+        this.port = port;
     }
 
-    static void connect(int port, Handler handler, InetAddress groupOwnerAddress)
-            throws IOException {
+    @Override
+    public void run() {
         Socket socket = new Socket();
-        socket.bind(null);
-        socket.connect(new InetSocketAddress(groupOwnerAddress.getHostAddress(),
-                port), 5000);
-        Log.d(TAG, "Launching the I/O handler");
-        ChatManager chat = new ChatManager(socket, handler);
-        new Thread(chat).start();
+        try {
+            socket.bind(null);
+            socket.connect(new InetSocketAddress(mAddress.getHostAddress(),
+                    port), 5000);
+            Log.d(TAG, "Launching the I/O handler");
+            chat = new ChatManager(socket, handler);
+            new Thread(chat).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return;
+        }
     }
+
+    public ChatManager getChat() {
+        return chat;
+    }
+
 }

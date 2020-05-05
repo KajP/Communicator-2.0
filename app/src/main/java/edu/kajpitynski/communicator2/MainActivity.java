@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity
 
     private TextView statusText;
 
+    private ChatFragment chatFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         WiFiServiceFragment fragment = WiFiServiceFragment.newInstance();
-        fragmentTransaction.add(R.id.fragment, fragment, null);
+        fragmentTransaction.add(R.id.fragment, fragment, "services");
         fragmentTransaction.commit();
 
         startRegistration();
@@ -133,12 +136,15 @@ public class MainActivity extends AppCompatActivity
                 srcDevice.deviceName = buddies.containsKey(srcDevice.deviceAddress) ? buddies
                         .get(srcDevice.deviceAddress) : srcDevice.deviceName;
 
-                WiFiServiceFragment fragment = (WiFiServiceFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.fragment);
-                Log.d(TAG, String.format("%s %s", instanceName, registrationType));
-                MyWiFiServiceRecyclerViewAdapter adapter = fragment.getAdapter();
-                adapter.add(srcDevice);
-                adapter.notifyDataSetChanged();
+                Fragment fragment1 = getSupportFragmentManager().findFragmentByTag("services");
+                if (fragment1 != null) {
+                    WiFiServiceFragment fragment = (WiFiServiceFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.fragment);
+                    Log.d(TAG, String.format("%s %s", instanceName, registrationType));
+                    MyWiFiServiceRecyclerViewAdapter adapter = fragment.getAdapter();
+                    adapter.add(srcDevice);
+                    adapter.notifyDataSetChanged();
+                }
             }
         };
 
@@ -223,6 +229,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionInfoAvailable(final WifiP2pInfo info) {
         Log.d(TAG, "Connection info available");
+        ChatManager manager = null;
         if (info.isGroupOwner) {
             Log.d(TAG, "Group owner");
             try {
@@ -234,30 +241,14 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             Log.d(TAG, "Not owner");
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        ClientSocketHandler.connect(SERVER_PORT, handler, info.groupOwnerAddress);
-//                        appendStatus("Client done");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-//                        appendStatus("Client failed");
-                    }
-                }
-            }).start();
-//            try {
-//                ClientSocketHandler.connect(SERVER_PORT, handler, info.groupOwnerAddress);
-//                appendStatus("Client done");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                appendStatus("Client failed");
-//            }
+            ClientSocketHandler clientSocketHandler =
+                    new ClientSocketHandler(handler, info.groupOwnerAddress, SERVER_PORT);
+            clientSocketHandler.start();
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        ChatFragment chatFragment = ChatFragment.newInstance("dsfaf", "sadfsadf");
-        transaction.replace(R.id.fragment, chatFragment);
+        chatFragment = ChatFragment.newInstance();
+        transaction.replace(R.id.fragment, chatFragment, "chat");
 //        transaction.remove(getSupportFragmentManager().findFragmentById(R.id.fragment));
 //        transaction.add(R.id.fragment, chatFragment, null);
 
@@ -276,6 +267,10 @@ public class MainActivity extends AppCompatActivity
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
                 Toast.makeText(this, readMessage, Toast.LENGTH_LONG).show();
+                break;
+            case MY_HANDLE:
+                Object obj = msg.obj;
+                chatFragment.setChatManager((ChatManager) obj);
                 break;
         }
         return true;
