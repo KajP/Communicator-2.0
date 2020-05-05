@@ -1,7 +1,5 @@
 package edu.kajpitynski.communicator2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -13,12 +11,21 @@ import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceRequest;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.net.wifi.p2p.WifiP2pManager.*;
+import static android.net.wifi.p2p.WifiP2pManager.ActionListener;
+import static android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener;
+import static android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener;
+import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION;
+import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION;
+import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION;
+import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements WiFiServiceFragment.OnListFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
 
@@ -27,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int SERVER_PORT = 8888;
 
     private WifiP2pManager manager;
+
+    private final HashMap<String, String> buddies = new HashMap<>();
 
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
@@ -87,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                                   Map<String, String> txtRecordMap,
                                                   WifiP2pDevice srcDevice) {
                 Log.d(TAG, "DnsSdTxtRecord available -" + txtRecordMap.toString());
+                buddies.put(srcDevice.deviceAddress, txtRecordMap.get("buddyname"));
             }
         };
 
@@ -94,7 +104,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDnsSdServiceAvailable(String instanceName,
                                                 String registrationType, WifiP2pDevice srcDevice) {
+                srcDevice.deviceName = buddies.containsKey(srcDevice.deviceAddress) ? buddies
+                        .get(srcDevice.deviceAddress) : srcDevice.deviceName;
 
+                WiFiServiceFragment fragment = (WiFiServiceFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.fragment);
+                MyWiFiServiceRecyclerViewAdapter adapter = fragment.getAdapter();
+                adapter.add(srcDevice);
+                adapter.notifyDataSetChanged();
             }
         };
 
@@ -135,5 +152,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onListFragmentInteraction(WifiP2pDevice item) {
+
     }
 }
