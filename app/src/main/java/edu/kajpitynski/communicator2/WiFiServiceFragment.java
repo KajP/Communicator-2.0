@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import edu.kajpitynski.communicator2.adapter.MyWiFiServiceRecyclerViewAdapter;
+
 /**
  * A fragment representing a list of Items.
  * <p/>

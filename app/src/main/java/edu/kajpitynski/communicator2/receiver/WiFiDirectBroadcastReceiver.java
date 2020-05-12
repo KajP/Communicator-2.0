@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
+
+import edu.kajpitynski.communicator2.MainActivity;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 

@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +26,12 @@ import androidx.fragment.app.FragmentTransaction;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.kajpitynski.communicator2.adapter.MyWiFiServiceRecyclerViewAdapter;
+import edu.kajpitynski.communicator2.network.ChatManager;
+import edu.kajpitynski.communicator2.network.ClientSocketHandler;
+import edu.kajpitynski.communicator2.network.ServerSocketHandler;
+import edu.kajpitynski.communicator2.receiver.WiFiDirectBroadcastReceiver;
 
 import static android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import static android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener;

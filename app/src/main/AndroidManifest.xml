@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".WiFiDirectBroadcastReceiver"
+            android:name=".receiver.WiFiDirectBroadcastReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
 

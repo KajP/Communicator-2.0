@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.item;
 
 public class MessageItem {
     public final String user;

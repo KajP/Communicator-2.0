@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.network;
 
 import android.os.Handler;
 import android.util.Log;

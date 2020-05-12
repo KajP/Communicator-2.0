@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import edu.kajpitynski.communicator2.network.ChatManager;
+import edu.kajpitynski.communicator2.adapter.MyMessageRecyclerViewAdapter;
+import edu.kajpitynski.communicator2.item.MessageItem;
 
 
 /**
@@ -79,7 +81,7 @@ public class ChatFragment extends Fragment {
         this.chatManager = chatManager;
     }
 
-    void pushMessage(String user, String message) {
+    public void pushMessage(String user, String message) {
         messageItems.add(new MessageItem(user, message));
         adapter.notifyDataSetChanged();
     }

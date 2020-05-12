@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.network;
 
 import android.os.Handler;
 import android.util.Log;
@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+
+import edu.kajpitynski.communicator2.MainActivity;
 
 public class ChatManager implements Runnable {
     private static final String TAG = "ChatHandler";

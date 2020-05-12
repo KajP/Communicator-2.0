@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.adapter;
 
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.WiFiServiceFragment.OnListFragmentInteractionListener;
 
 /**
