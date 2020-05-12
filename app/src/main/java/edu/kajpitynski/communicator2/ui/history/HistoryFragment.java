@@ -46,7 +46,7 @@ public class HistoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
 
-        mViewModel.getLiveConversations().observe(getViewLifecycleOwner(),
+        mViewModel.getConversations().observe(getViewLifecycleOwner(),
                 new Observer<ArrayList<ConversationEntity>>() {
             @Override
             public void onChanged(ArrayList<ConversationEntity> conversationEntities) {

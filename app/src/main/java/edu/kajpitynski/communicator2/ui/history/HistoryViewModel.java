@@ -7,24 +7,21 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.kajpitynski.communicator2.MessageRepository;
 import edu.kajpitynski.communicator2.entity.ConversationEntity;
 import edu.kajpitynski.communicator2.model.Conversation;
 
 public class HistoryViewModel extends ViewModel {
-    private ArrayList<ConversationEntity> conversations;
-    private MutableLiveData<ArrayList<ConversationEntity>> liveConversations;
+    private LiveData<ArrayList<ConversationEntity>> liveConversations;
+    private MessageRepository repository;
 
     public HistoryViewModel() {
-        conversations = new ArrayList<>();
-        ArrayList<String> mess = new ArrayList<>();
-        mess.add("asdfsadf");
-        conversations.add(new ConversationEntity(1, 23, mess));
+        repository = MessageRepository.getInstance();
 
-        liveConversations = new MutableLiveData<>();
-        liveConversations.setValue(conversations);
+        liveConversations = repository.getConversations();
     }
 
-    public LiveData<ArrayList<ConversationEntity>> getLiveConversations() {
+    public LiveData<ArrayList<ConversationEntity>> getConversations() {
         return liveConversations;
     }
 }
