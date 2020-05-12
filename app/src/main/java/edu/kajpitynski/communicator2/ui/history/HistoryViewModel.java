@@ -1,15 +1,12 @@
 package edu.kajpitynski.communicator2.ui.history;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.kajpitynski.communicator2.MessageRepository;
-import edu.kajpitynski.communicator2.entity.ConversationEntity;
-import edu.kajpitynski.communicator2.model.Conversation;
+import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 
 public class HistoryViewModel extends ViewModel {
     private LiveData<ArrayList<ConversationEntity>> liveConversations;

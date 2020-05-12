@@ -5,5 +5,4 @@ import java.util.List;
 public interface Conversation {
     public int getId();
     public String getRecipient();
-    public List<String> getMessages();
 }

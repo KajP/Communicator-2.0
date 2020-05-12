@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyHistoryRecyclerViewAdapter;
-import edu.kajpitynski.communicator2.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 
 public class HistoryFragment extends Fragment {
 

@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import edu.kajpitynski.communicator2.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
 
 public class MessageRepository {
     private static MessageRepository sInstance;
@@ -28,7 +30,9 @@ public class MessageRepository {
         conversations = new ArrayList<>();
         ArrayList<String> mess = new ArrayList<>();
         mess.add("asdfsadf");
-        conversations.add(new ConversationEntity(1, 23, mess));
+        List<ConversationWithMessages> conversation;
+        conversations.add(new ConversationEntity(1, "Michael"));
+        conversations.add(new ConversationEntity(2, "John"));
 
         liveConversations = new MutableLiveData<>();
         liveConversations.setValue(conversations);
