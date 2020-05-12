@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                Toast.makeText(this, readMessage, Toast.LENGTH_LONG).show();
+                chatFragment.pushMessage("Someone:", readMessage);
                 break;
             case MY_HANDLE:
                 Object obj = msg.obj;
