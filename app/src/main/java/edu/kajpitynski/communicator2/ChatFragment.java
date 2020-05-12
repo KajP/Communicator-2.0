@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import edu.kajpitynski.communicator2.dummy.DummyContent;
-
 
 /**
  * A simple {@link Fragment} subclass.

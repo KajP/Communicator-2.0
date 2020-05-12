@@ -11,17 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
+        android:name="edu.kajpitynski.communicator2.WiFiServiceFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment"
-            android:name="edu.kajpitynski.communicator2.WiFiServiceFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_wi_fi_service_list" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_wi_fi_service_list" />
 
 </LinearLayout>

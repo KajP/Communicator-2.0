@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity
 
     private ChatFragment chatFragment;
 
+    private String buddyName = "Unknown";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(WifiP2pDevice item) {
         Log.d(TAG, item.toString());
-        WifiP2pConfig config = new WifiP2pConfig();
+        final WifiP2pConfig config = new WifiP2pConfig();
         config.deviceAddress = item.deviceAddress;
         config.wps.setup = WpsInfo.PBC;
 
@@ -212,6 +214,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onSuccess() {
                 Log.d(TAG, "Connected");
+                buddyName = buddies.get(config.deviceAddress);
             }
 
             @Override
@@ -249,8 +252,6 @@ public class MainActivity extends AppCompatActivity
 
         chatFragment = ChatFragment.newInstance();
         transaction.replace(R.id.fragment, chatFragment, "chat");
-//        transaction.remove(getSupportFragmentManager().findFragmentById(R.id.fragment));
-//        transaction.add(R.id.fragment, chatFragment, null);
 
         transaction.commit();
     }
@@ -266,7 +267,7 @@ public class MainActivity extends AppCompatActivity
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                chatFragment.pushMessage("Someone:", readMessage);
+                chatFragment.pushMessage(buddyName, readMessage);
                 break;
             case MY_HANDLE:
                 Object obj = msg.obj;
