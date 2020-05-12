@@ -1,5 +1,6 @@
 package edu.kajpitynski.communicator2.ui.history;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -13,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyHistoryRecyclerViewAdapter;
+import edu.kajpitynski.communicator2.entity.ConversationEntity;
 
 public class HistoryFragment extends Fragment {
 
@@ -42,7 +46,13 @@ public class HistoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
 
-        recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(mViewModel.getConversations()));
+        mViewModel.getLiveConversations().observe(getViewLifecycleOwner(),
+                new Observer<ArrayList<ConversationEntity>>() {
+            @Override
+            public void onChanged(ArrayList<ConversationEntity> conversationEntities) {
+                recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(conversationEntities));
+            }
+        });
     }
 
 }

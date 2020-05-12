@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class ChatFragment extends Fragment {
     private ArrayList<MessageItem> messageItems = new ArrayList<>();
 
     private MyMessageRecyclerViewAdapter adapter;
+
+    private ChatViewModel mViewModel;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -75,6 +79,12 @@ public class ChatFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = ViewModelProviders.of(this).get(ChatViewModel.class);
     }
 
     public void setChatManager(ChatManager chatManager) {
