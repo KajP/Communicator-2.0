@@ -3,6 +3,7 @@ package edu.kajpitynski.communicator2.ui.history;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyHistoryRecyclerViewAdapter;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.model.Conversation;
 
 public class HistoryFragment extends Fragment {
 
@@ -26,8 +28,16 @@ public class HistoryFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
+    private OnListFragmentInteractionListener mListener;
+
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mListener = (OnListFragmentInteractionListener) context;
     }
 
     @Nullable
@@ -50,9 +60,13 @@ public class HistoryFragment extends Fragment {
                 new Observer<ArrayList<ConversationEntity>>() {
             @Override
             public void onChanged(ArrayList<ConversationEntity> conversationEntities) {
-                recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(conversationEntities));
+                recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(conversationEntities,
+                        mListener));
             }
         });
     }
 
+    public interface OnListFragmentInteractionListener {
+        void onListFragmentInteraction(Conversation conversation);
+    }
 }
