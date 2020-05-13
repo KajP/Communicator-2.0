@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,7 +87,9 @@ public class ChatFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ChatViewModel.class);
+        ChatViewModel.Factory factory = new ChatViewModel.Factory(requireActivity()
+                .getApplication());
+        mViewModel = new ViewModelProvider(this, factory).get(ChatViewModel.class);
     }
 
     @Override

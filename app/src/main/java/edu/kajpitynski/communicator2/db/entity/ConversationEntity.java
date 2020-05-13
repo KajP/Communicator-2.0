@@ -10,7 +10,7 @@ import edu.kajpitynski.communicator2.model.Conversation;
 
 @Entity
 public class ConversationEntity implements Conversation {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String recipient;
 
