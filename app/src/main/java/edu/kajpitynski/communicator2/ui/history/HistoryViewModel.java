@@ -9,13 +9,14 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.kajpitynski.communicator2.BasicApp;
 import edu.kajpitynski.communicator2.MessageRepository;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 
 public class HistoryViewModel extends ViewModel {
-    private LiveData<ArrayList<ConversationEntity>> liveConversations;
+    private LiveData<List<ConversationEntity>> liveConversations;
     private MessageRepository repository;
 
     public HistoryViewModel(@NonNull Application application) {
@@ -24,7 +25,7 @@ public class HistoryViewModel extends ViewModel {
         liveConversations = repository.getConversations();
     }
 
-    public LiveData<ArrayList<ConversationEntity>> getConversations() {
+    public LiveData<List<ConversationEntity>> getConversations() {
         return liveConversations;
     }
 

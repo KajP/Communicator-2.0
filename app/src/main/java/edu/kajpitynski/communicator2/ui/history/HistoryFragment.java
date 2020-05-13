@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyHistoryRecyclerViewAdapter;
@@ -61,13 +62,13 @@ public class HistoryFragment extends Fragment {
         mViewModel = new ViewModelProvider(this, factory).get(HistoryViewModel.class);
 
         mViewModel.getConversations().observe(getViewLifecycleOwner(),
-                new Observer<ArrayList<ConversationEntity>>() {
-            @Override
-            public void onChanged(ArrayList<ConversationEntity> conversationEntities) {
-                recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(conversationEntities,
-                        mListener));
-            }
-        });
+                new Observer<List<ConversationEntity>>() {
+                    @Override
+                    public void onChanged(List<ConversationEntity> conversationEntities) {
+                        recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(conversationEntities,
+                                mListener));
+                    }
+                });
     }
 
     public interface OnListFragmentInteractionListener {

@@ -46,17 +46,17 @@ public class MessageRepository {
         liveConversations.setValue(conversations);
     }
 
-    public LiveData<ArrayList<ConversationEntity>> getConversations() {
-        return liveConversations;
+    public LiveData<List<ConversationEntity>> getConversations() {
+        return mDatabase.conversationDao().getAllConversations();
     }
 
     public void addConversation(final ConversationEntity conversationEntity) {
-        new Thread(new Runnable() {
+        mDatabase.runInTransaction(new Runnable() {
             @Override
             public void run() {
                 mDatabase.conversationDao().insertConversation(conversationEntity);
                 Log.d(TAG, "Inserted");
             }
-        }).start();
+        });
     }
 }
