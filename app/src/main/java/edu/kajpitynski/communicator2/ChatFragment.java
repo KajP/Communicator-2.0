@@ -89,12 +89,18 @@ public class ChatFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ChatViewModel.class);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
     public void setChatManager(ChatManager chatManager) {
         this.chatManager = chatManager;
     }
 
     public void pushMessage(String user, String message) {
         messageItems.add(new MessageItem(user, message));
+        mViewModel.addMessage(new MessageItem(user, message));
         adapter.notifyDataSetChanged();
     }
 

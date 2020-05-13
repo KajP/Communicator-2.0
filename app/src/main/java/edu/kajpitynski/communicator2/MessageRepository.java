@@ -6,17 +6,20 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.kajpitynski.communicator2.db.AppDatabase;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
 
 public class MessageRepository {
     private static MessageRepository sInstance;
 
-    public static MessageRepository getInstance() {
+    private AppDatabase mDatabase;
+
+    public static MessageRepository getInstance(AppDatabase database) {
         if (sInstance == null) {
             synchronized (MessageRepository.class) {
                 if (sInstance == null) {
-                    sInstance = new MessageRepository();
+                    sInstance = new MessageRepository(database);
                 }
             }
         }
@@ -26,7 +29,9 @@ public class MessageRepository {
     private ArrayList<ConversationEntity> conversations;
     private MutableLiveData<ArrayList<ConversationEntity>> liveConversations;
 
-    private MessageRepository() {
+    private MessageRepository(AppDatabase database) {
+        mDatabase = database;
+
         conversations = new ArrayList<>();
         ArrayList<String> mess = new ArrayList<>();
         mess.add("asdfsadf");
@@ -40,5 +45,9 @@ public class MessageRepository {
 
     public LiveData<ArrayList<ConversationEntity>> getConversations() {
         return liveConversations;
+    }
+
+    public void addConversation(ConversationEntity conversationEntity) {
+
     }
 }

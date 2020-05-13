@@ -182,6 +182,20 @@ public class MessageActivity extends AppCompatActivity
         });
     }
 
+    private void disconnect() {
+        manager.removeGroup(channel, new ActionListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(int reason) {
+
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -192,6 +206,18 @@ public class MessageActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         unregisterReceiver(receiver);
+        // save messages
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disconnect();
     }
 
     @Override

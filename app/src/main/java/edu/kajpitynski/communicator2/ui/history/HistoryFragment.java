@@ -1,6 +1,7 @@
 package edu.kajpitynski.communicator2.ui.history;
 
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -54,7 +55,10 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+
+        HistoryViewModel.Factory factory = new HistoryViewModel.Factory(requireActivity()
+                .getApplication());
+        mViewModel = new ViewModelProvider(this, factory).get(HistoryViewModel.class);
 
         mViewModel.getConversations().observe(getViewLifecycleOwner(),
                 new Observer<ArrayList<ConversationEntity>>() {
