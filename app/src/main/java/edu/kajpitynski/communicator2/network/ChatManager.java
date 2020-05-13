@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import edu.kajpitynski.communicator2.MainActivity;
+import edu.kajpitynski.communicator2.MessageActivity;
 
 public class ChatManager implements Runnable {
     private static final String TAG = "ChatHandler";
@@ -30,7 +30,7 @@ public class ChatManager implements Runnable {
             oStream = socket.getOutputStream();
             byte[] buffer = new byte[1024];
             int bytes;
-            handler.obtainMessage(MainActivity.MY_HANDLE, this)
+            handler.obtainMessage(MessageActivity.MY_HANDLE, this)
                     .sendToTarget();
 
             while (true) {
@@ -43,7 +43,7 @@ public class ChatManager implements Runnable {
 
                     // Send the obtained bytes to the UI Activity
                     Log.d(TAG, "Rec:" + buffer);
-                    handler.obtainMessage(MainActivity.MESSAGE_READ,
+                    handler.obtainMessage(MessageActivity.MESSAGE_READ,
                             bytes, -1, buffer).sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);

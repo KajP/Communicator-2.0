@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import edu.kajpitynski.communicator2.db.entity.MessageEntity;
 import edu.kajpitynski.communicator2.network.ChatManager;
 import edu.kajpitynski.communicator2.adapter.MyMessageRecyclerViewAdapter;
 import edu.kajpitynski.communicator2.item.MessageItem;
@@ -30,6 +31,7 @@ public class ChatFragment extends Fragment {
     private ChatManager chatManager;
 
     private ArrayList<MessageItem> messageItems = new ArrayList<>();
+    private ArrayList<MessageEntity> messageEntities = new ArrayList<>();
 
     private MyMessageRecyclerViewAdapter adapter;
 

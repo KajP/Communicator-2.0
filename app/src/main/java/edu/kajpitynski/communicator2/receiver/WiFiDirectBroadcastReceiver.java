@@ -8,7 +8,7 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 
-import edu.kajpitynski.communicator2.MainActivity;
+import edu.kajpitynski.communicator2.MessageActivity;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
@@ -16,10 +16,10 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
     private WifiP2pManager manager;
     private WifiP2pManager.Channel channel;
-    private MainActivity activity;
+    private MessageActivity activity;
 
     public WiFiDirectBroadcastReceiver(WifiP2pManager manager,
-                                       WifiP2pManager.Channel channel, MainActivity activity) {
+                                       WifiP2pManager.Channel channel, MessageActivity activity) {
         this.manager = manager;
         this.channel = channel;
         this.activity = activity;

@@ -35,8 +35,10 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".MainActivity">
-
+        <activity android:name=".MessageActivity"
+            android:parentActivityName=".HistoryActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HistoryActivity"/>
         </activity>
     </application>
 

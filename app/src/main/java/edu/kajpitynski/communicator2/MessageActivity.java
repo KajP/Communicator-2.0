@@ -41,7 +41,7 @@ import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION;
 import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION;
 import static android.net.wifi.p2p.WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION;
 
-public class MainActivity extends AppCompatActivity
+public class MessageActivity extends AppCompatActivity
         implements WiFiServiceFragment.OnListFragmentInteractionListener,
         WifiP2pManager.ConnectionInfoListener, Handler.Callback {
 
