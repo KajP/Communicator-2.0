@@ -1,6 +1,7 @@
 package edu.kajpitynski.communicator2.db.entity;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import edu.kajpitynski.communicator2.model.Message;
@@ -9,6 +10,9 @@ import edu.kajpitynski.communicator2.model.Message;
 public class MessageEntity implements Message {
     @PrimaryKey
     private int id;
+    @ForeignKey(entity = ConversationEntity.class, parentColumns = "id",
+            childColumns = "conversationId", onUpdate = ForeignKey.CASCADE,
+            onDelete = ForeignKey.CASCADE)
     private int conversationId;
     private String senderName;
     private String content;

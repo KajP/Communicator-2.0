@@ -8,8 +8,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
-import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
-import edu.kajpitynski.communicator2.model.Conversation;
+import io.reactivex.Completable;
 
 @Dao
 public interface ConversationDao {
@@ -17,5 +16,8 @@ public interface ConversationDao {
     LiveData<List<ConversationEntity>> getAllConversations();
 
     @Insert
-    void insertConversation(ConversationEntity conversation);
+    Completable insertConversation(ConversationEntity conversation);
+
+    @Query("delete from conversationentity")
+    Completable deleteAllConversation();
 }

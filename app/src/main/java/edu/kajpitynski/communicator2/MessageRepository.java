@@ -1,7 +1,5 @@
 package edu.kajpitynski.communicator2;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,6 +9,7 @@ import java.util.List;
 import edu.kajpitynski.communicator2.db.AppDatabase;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
+import io.reactivex.Completable;
 
 public class MessageRepository {
     private static String TAG = "MessageRepository";
@@ -50,13 +49,11 @@ public class MessageRepository {
         return mDatabase.conversationDao().getAllConversations();
     }
 
-    public void addConversation(final ConversationEntity conversationEntity) {
-        mDatabase.runInTransaction(new Runnable() {
-            @Override
-            public void run() {
-                mDatabase.conversationDao().insertConversation(conversationEntity);
-                Log.d(TAG, "Inserted");
-            }
-        });
+    public Completable addConversation(final ConversationEntity conversationEntity) {
+        return mDatabase.conversationDao().insertConversation(conversationEntity);
+    }
+
+    public Completable deleteAllConversations() {
+        return mDatabase.conversationDao().deleteAllConversation();
     }
 }
