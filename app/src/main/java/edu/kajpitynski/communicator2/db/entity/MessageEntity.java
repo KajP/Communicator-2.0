@@ -9,15 +9,15 @@ import edu.kajpitynski.communicator2.model.Message;
 @Entity
 public class MessageEntity implements Message {
     @PrimaryKey
-    private int id;
+    private long id;
     @ForeignKey(entity = ConversationEntity.class, parentColumns = "id",
             childColumns = "conversationId", onUpdate = ForeignKey.CASCADE,
             onDelete = ForeignKey.CASCADE)
-    private int conversationId;
+    private long conversationId;
     private String senderName;
     private String content;
 
-    public MessageEntity(int id, int conversationId, String senderName, String content) {
+    public MessageEntity(long id, long conversationId, String senderName, String content) {
         this.id = id;
         this.conversationId = conversationId;
         this.senderName = senderName;
@@ -25,12 +25,17 @@ public class MessageEntity implements Message {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getConversationId() {
+    public long getConversationId() {
         return conversationId;
+    }
+
+    @Override
+    public void setConversationId(long id) {
+        conversationId = id;
     }
 
     public String getSenderName() {

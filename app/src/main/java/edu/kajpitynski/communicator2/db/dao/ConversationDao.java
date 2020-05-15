@@ -9,6 +9,7 @@ import java.util.List;
 
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 import io.reactivex.Completable;
+import io.reactivex.Single;
 
 @Dao
 public interface ConversationDao {
@@ -16,7 +17,7 @@ public interface ConversationDao {
     LiveData<List<ConversationEntity>> getAllConversations();
 
     @Insert
-    Completable insertConversation(ConversationEntity conversation);
+    Single<Long> insertConversation(ConversationEntity conversation);
 
     @Query("delete from conversationentity")
     Completable deleteAllConversation();

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.ArrayList;
 
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.db.entity.MessageEntity;
 import edu.kajpitynski.communicator2.item.MessageItem;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,7 +22,9 @@ public class ChatViewModel extends ViewModel {
     private static final String TAG = "ChatViewModel";
 
     private MessageRepository repository;
-    private ArrayList<MessageItem> messages = new ArrayList<>();
+    //TODO
+    private final String recipient = "Unknown";
+    private ArrayList<MessageEntity> messageEntities = new ArrayList<>();
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -30,14 +33,16 @@ public class ChatViewModel extends ViewModel {
     }
 
     public void addMessage(MessageItem messageItem) {
-        messages.add(messageItem);
+        messageEntities.add(new MessageEntity(0, 0, messageItem.user,
+                messageItem.content));
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-        // repository.addConversationWithMessages
-        mDisposable.add(repository.addConversation(new ConversationEntity(0, "sdasdaf"))
+        mDisposable.add(repository
+                .addConversationWithMessages(new ConversationEntity(0, recipient),
+                        messageEntities.toArray(new MessageEntity[0]))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action() {
@@ -51,6 +56,10 @@ public class ChatViewModel extends ViewModel {
                         Log.e(TAG, "Error while saving the conversation", throwable);
                     }
                 }));
+    }
+
+    private void convertMessages() {
+
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

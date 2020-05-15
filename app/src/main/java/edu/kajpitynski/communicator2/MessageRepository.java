@@ -8,8 +8,11 @@ import java.util.List;
 
 import edu.kajpitynski.communicator2.db.AppDatabase;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.db.entity.MessageEntity;
 import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
 import io.reactivex.Completable;
+import io.reactivex.CompletableSource;
+import io.reactivex.functions.Function;
 
 public class MessageRepository {
     private static String TAG = "MessageRepository";
@@ -50,7 +53,22 @@ public class MessageRepository {
     }
 
     public Completable addConversation(final ConversationEntity conversationEntity) {
-        return mDatabase.conversationDao().insertConversation(conversationEntity);
+        return mDatabase.conversationDao().insertConversation(conversationEntity).ignoreElement();
+    }
+
+    public Completable addConversationWithMessages(ConversationEntity conversationEntity,
+                                                   final MessageEntity... messageEntities) {
+        return mDatabase.conversationDao().insertConversation(conversationEntity)
+                .flatMapCompletable(new Function<Long, CompletableSource>() {
+                    @Override
+                    public CompletableSource apply(Long conversationId) throws Exception {
+                        for (MessageEntity message :
+                                messageEntities) {
+                            message.setConversationId(conversationId);
+                        }
+                        return mDatabase.messageDao().insertMessages(messageEntities);
+                    }
+                });
     }
 
     public Completable deleteAllConversations() {

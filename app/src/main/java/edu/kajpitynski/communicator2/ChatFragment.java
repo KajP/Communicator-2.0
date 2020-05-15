@@ -10,15 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import edu.kajpitynski.communicator2.db.entity.MessageEntity;
-import edu.kajpitynski.communicator2.network.ChatManager;
 import edu.kajpitynski.communicator2.adapter.MyMessageRecyclerViewAdapter;
 import edu.kajpitynski.communicator2.item.MessageItem;
+import edu.kajpitynski.communicator2.network.ChatManager;
 
 
 /**
@@ -32,7 +30,6 @@ public class ChatFragment extends Fragment {
     private ChatManager chatManager;
 
     private ArrayList<MessageItem> messageItems = new ArrayList<>();
-    private ArrayList<MessageEntity> messageEntities = new ArrayList<>();
 
     private MyMessageRecyclerViewAdapter adapter;
 
