@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:autofillHints="message"
+        android:hint="@string/enter_the_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -31,7 +32,7 @@
         android:id="@+id/button"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/chatLine" />

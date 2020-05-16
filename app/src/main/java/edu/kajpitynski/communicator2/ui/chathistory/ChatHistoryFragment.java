@@ -28,7 +28,6 @@ public class ChatHistoryFragment extends Fragment {
     private ChatHistoryViewModel viewModel;
     private RecyclerView recyclerView;
 
-    //public static BlankFragment newInstance(String param1, String param2)
     public static ChatHistoryFragment newInstance(long id) {
         ChatHistoryFragment fragment = new ChatHistoryFragment();
         Bundle args = new Bundle();

@@ -43,10 +43,11 @@ public class MessageRepository {
 
     public Completable addConversationWithMessages(ConversationEntity conversationEntity,
                                                    final MessageEntity... messageEntities) {
+        conversationEntity.setLastTime(System.currentTimeMillis());
         return mDatabase.conversationDao().insertConversation(conversationEntity)
                 .flatMapCompletable(new Function<Long, CompletableSource>() {
                     @Override
-                    public CompletableSource apply(Long conversationId) throws Exception {
+                    public CompletableSource apply(Long conversationId) {
                         for (MessageEntity message :
                                 messageEntities) {
                             message.setConversationId(conversationId);

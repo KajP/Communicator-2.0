@@ -83,6 +83,7 @@ public class ChatFragment extends Fragment {
                 if (chatManager != null) {
                     chatManager.write(chatLine.getText().toString().getBytes());
                     pushMessage("Me: ", chatLine.getText().toString());
+                    chatLine.setText("");
                     Log.d(TAG, "Written");
                 }
             }

@@ -1,6 +1,11 @@
 package edu.kajpitynski.communicator2.model;
 
 public interface Conversation {
-    public long getId();
-    public String getRecipient();
+    long getId();
+
+    String getRecipient();
+
+    long getLastTime();
+
+    void setLastTime(long lastTime);
 }

@@ -4,11 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import edu.kajpitynski.communicator2.R;
@@ -40,8 +42,9 @@ public class MyHistoryRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         holder.mItem = conversations.get(position);
         holder.mName.setText(holder.mItem.getRecipient());
-        holder.mDetails.setText("asdfsdf");
-        holder.mTime.setText("asddsf");
+        holder.mDetails.setText("last message");
+        DateFormat format = SimpleDateFormat.getTimeInstance();
+        holder.mTime.setText(format.format(new Date(holder.mItem.getLastTime())));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,11 +60,11 @@ public class MyHistoryRecyclerViewAdapter
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mName;
-        public final TextView mDetails;
-        public final TextView mTime;
-        public Conversation mItem;
+        final View mView;
+        final TextView mName;
+        final TextView mDetails;
+        final TextView mTime;
+        Conversation mItem;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
