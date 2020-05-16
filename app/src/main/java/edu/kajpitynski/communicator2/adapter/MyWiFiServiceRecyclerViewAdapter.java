@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.kajpitynski.communicator2.R;
-import edu.kajpitynski.communicator2.WiFiServiceFragment.OnListFragmentInteractionListener;
+import edu.kajpitynski.communicator2.ui.wifiservice.WiFiServiceFragment.OnListFragmentInteractionListener;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link WifiP2pDevice} and makes a call to the

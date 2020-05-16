@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
-import edu.kajpitynski.communicator2.BasicApp;
-import edu.kajpitynski.communicator2.MessageRepository;
+import edu.kajpitynski.communicator2.application.BasicApp;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
+import edu.kajpitynski.communicator2.repository.MessageRepository;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Action;

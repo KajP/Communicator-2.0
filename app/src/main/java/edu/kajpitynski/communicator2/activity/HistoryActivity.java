@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.model.Conversation;
 import edu.kajpitynski.communicator2.ui.history.HistoryFragment;
 import edu.kajpitynski.communicator2.ui.history.HistoryViewModel;

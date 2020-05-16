@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MessageActivity">
+    tools:context=".activity.MessageActivity">
 
     <TextView
         android:id="@+id/statusText"
@@ -13,7 +13,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
-        android:name="edu.kajpitynski.communicator2.WiFiServiceFragment"
+        android:name="edu.kajpitynski.communicator2.ui.wifiservice.WiFiServiceFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_wi_fi_service_list" />

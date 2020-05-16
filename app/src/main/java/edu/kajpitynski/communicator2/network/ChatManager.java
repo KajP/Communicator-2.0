@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import edu.kajpitynski.communicator2.MessageActivity;
+import edu.kajpitynski.communicator2.activity.MessageActivity;
 
 public class ChatManager implements Runnable {
     private static final String TAG = "ChatHandler";

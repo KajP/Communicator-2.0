@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".ChatFragment"
+    tools:context=".ui.chat.ChatFragment"
     tools:listitem="@layout/recycler_view_message" />

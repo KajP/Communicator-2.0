@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.ui.chat;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyMessageRecyclerViewAdapter;
 import edu.kajpitynski.communicator2.item.MessageItem;
 import edu.kajpitynski.communicator2.network.ChatManager;

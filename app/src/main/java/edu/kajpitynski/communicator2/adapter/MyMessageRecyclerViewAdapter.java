@@ -1,17 +1,17 @@
 package edu.kajpitynski.communicator2.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-import edu.kajpitynski.communicator2.ChatFragment;
-import edu.kajpitynski.communicator2.item.MessageItem;
 import edu.kajpitynski.communicator2.R;
+import edu.kajpitynski.communicator2.item.MessageItem;
+import edu.kajpitynski.communicator2.ui.chat.ChatFragment;
 
 public class MyMessageRecyclerViewAdapter extends RecyclerView.Adapter<MyMessageRecyclerViewAdapter.ViewHolder> {
 

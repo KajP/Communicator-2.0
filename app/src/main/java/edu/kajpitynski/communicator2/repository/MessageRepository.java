@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.repository;
 
 import androidx.lifecycle.LiveData;
 

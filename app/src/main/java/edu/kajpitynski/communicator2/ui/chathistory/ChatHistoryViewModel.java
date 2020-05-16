@@ -7,9 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import edu.kajpitynski.communicator2.BasicApp;
-import edu.kajpitynski.communicator2.MessageRepository;
+import edu.kajpitynski.communicator2.application.BasicApp;
 import edu.kajpitynski.communicator2.db.relations.ConversationWithMessages;
+import edu.kajpitynski.communicator2.repository.MessageRepository;
 
 public class ChatHistoryViewModel extends ViewModel {
     private MessageRepository repository;

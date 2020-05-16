@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,11 +27,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.kajpitynski.communicator2.R;
 import edu.kajpitynski.communicator2.adapter.MyWiFiServiceRecyclerViewAdapter;
 import edu.kajpitynski.communicator2.network.ChatManager;
 import edu.kajpitynski.communicator2.network.ClientSocketHandler;
 import edu.kajpitynski.communicator2.network.ServerSocketHandler;
 import edu.kajpitynski.communicator2.receiver.WiFiDirectBroadcastReceiver;
+import edu.kajpitynski.communicator2.ui.chat.ChatFragment;
+import edu.kajpitynski.communicator2.ui.wifiservice.WiFiServiceFragment;
 
 import static android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import static android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener;

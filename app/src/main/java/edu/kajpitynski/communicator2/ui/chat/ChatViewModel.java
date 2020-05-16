@@ -1,4 +1,4 @@
-package edu.kajpitynski.communicator2;
+package edu.kajpitynski.communicator2.ui.chat;
 
 import android.app.Application;
 import android.util.Log;
@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
+import edu.kajpitynski.communicator2.application.BasicApp;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 import edu.kajpitynski.communicator2.db.entity.MessageEntity;
 import edu.kajpitynski.communicator2.item.MessageItem;
+import edu.kajpitynski.communicator2.repository.MessageRepository;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Action;
