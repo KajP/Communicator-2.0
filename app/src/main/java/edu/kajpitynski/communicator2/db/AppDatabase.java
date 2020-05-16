@@ -12,7 +12,8 @@ import edu.kajpitynski.communicator2.db.dao.MessageDao;
 import edu.kajpitynski.communicator2.db.entity.ConversationEntity;
 import edu.kajpitynski.communicator2.db.entity.MessageEntity;
 
-@Database(entities = {ConversationEntity.class, MessageEntity.class}, version = 1)
+@Database(entities = {ConversationEntity.class, MessageEntity.class}, version = 1,
+        exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase sInstance;
 

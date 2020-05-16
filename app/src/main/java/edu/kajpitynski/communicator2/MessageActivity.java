@@ -281,7 +281,7 @@ public class MessageActivity extends AppCompatActivity
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        chatFragment = ChatFragment.newInstance();
+        chatFragment = ChatFragment.newInstance(buddyName);
         transaction.replace(R.id.fragment, chatFragment, "chat");
 
         transaction.commit();

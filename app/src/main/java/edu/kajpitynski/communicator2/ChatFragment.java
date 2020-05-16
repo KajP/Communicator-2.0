@@ -27,6 +27,10 @@ import edu.kajpitynski.communicator2.network.ChatManager;
 public class ChatFragment extends Fragment {
     private static final String TAG = "ChatFragment";
 
+    private static final String ARG_BUDDY_NAME = "buddyName";
+
+    private String buddyName;
+
     private ChatManager chatManager;
 
     private ArrayList<MessageItem> messageItems = new ArrayList<>();
@@ -45,8 +49,11 @@ public class ChatFragment extends Fragment {
      *
      * @return A new instance of fragment ChatFragment.
      */
-    public static ChatFragment newInstance() {
+    public static ChatFragment newInstance(String buddyName) {
         ChatFragment fragment = new ChatFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_BUDDY_NAME, buddyName);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -54,6 +61,7 @@ public class ChatFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            buddyName = getArguments().getString(ARG_BUDDY_NAME);
         }
     }
 
@@ -85,7 +93,7 @@ public class ChatFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ChatViewModel.Factory factory = new ChatViewModel.Factory(requireActivity()
-                .getApplication());
+                .getApplication(), buddyName);
         mViewModel = new ViewModelProvider(this, factory).get(ChatViewModel.class);
     }
 

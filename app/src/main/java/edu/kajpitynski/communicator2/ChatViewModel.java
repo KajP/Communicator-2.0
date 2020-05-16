@@ -22,14 +22,15 @@ public class ChatViewModel extends ViewModel {
     private static final String TAG = "ChatViewModel";
 
     private MessageRepository repository;
-    //TODO
-    private final String recipient = "Unknown";
+
+    private final String recipient;
     private ArrayList<MessageEntity> messageEntities = new ArrayList<>();
 
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
-    public ChatViewModel(@NonNull Application application) {
+    public ChatViewModel(@NonNull Application application, String recipient) {
         repository = ((BasicApp) application).getRepository();
+        this.recipient = recipient;
     }
 
     public void addMessage(MessageItem messageItem) {
@@ -64,16 +65,18 @@ public class ChatViewModel extends ViewModel {
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
         private Application mApplication;
+        private String recipient;
 
-        public Factory(@NonNull Application application) {
+        public Factory(@NonNull Application application, String recipient) {
             mApplication = application;
+            this.recipient = recipient;
         }
 
         @SuppressWarnings("unchecked")
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new ChatViewModel(mApplication);
+            return (T) new ChatViewModel(mApplication, recipient);
         }
     }
 }
