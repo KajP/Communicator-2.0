@@ -66,5 +66,8 @@ public class HistoryActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Conversation conversation) {
         Log.d(TAG, conversation.toString());
+        Intent intent = new Intent(this, ChatHistoryActivity.class);
+        intent.putExtra("conversationId", conversation.getId());
+        startActivity(intent);
     }
 }

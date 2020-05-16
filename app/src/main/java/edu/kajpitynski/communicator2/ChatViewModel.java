@@ -42,7 +42,7 @@ public class ChatViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         mDisposable.add(repository
-                .addConversationWithMessages(new ConversationEntity(0, recipient),
+                .addConversationWithMessages(new ConversationEntity(0L, recipient),
                         messageEntities.toArray(new MessageEntity[0]))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -57,10 +57,6 @@ public class ChatViewModel extends ViewModel {
                         Log.e(TAG, "Error while saving the conversation", throwable);
                     }
                 }));
-    }
-
-    private void convertMessages() {
-
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

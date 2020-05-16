@@ -8,7 +8,7 @@ import edu.kajpitynski.communicator2.model.Message;
 
 @Entity
 public class MessageEntity implements Message {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
     @ForeignKey(entity = ConversationEntity.class, parentColumns = "id",
             childColumns = "conversationId", onUpdate = ForeignKey.CASCADE,

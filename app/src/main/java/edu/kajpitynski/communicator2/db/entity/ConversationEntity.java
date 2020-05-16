@@ -2,26 +2,23 @@ package edu.kajpitynski.communicator2.db.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-
-import java.util.List;
 
 import edu.kajpitynski.communicator2.model.Conversation;
 
 @Entity
 public class ConversationEntity implements Conversation {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
     private String recipient;
 
-    public ConversationEntity(int id, String recipient) {
+    public ConversationEntity(long id, String recipient) {
         this.id = id;
         this.recipient = recipient;
     }
 
     @Override
-    public int getId() {
-        return 0;
+    public long getId() {
+        return id;
     }
 
     @Override

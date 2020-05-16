@@ -1,9 +1,7 @@
 package edu.kajpitynski.communicator2;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.kajpitynski.communicator2.db.AppDatabase;
@@ -31,21 +29,8 @@ public class MessageRepository {
         return sInstance;
     }
 
-    private ArrayList<ConversationEntity> conversations;
-    private MutableLiveData<ArrayList<ConversationEntity>> liveConversations;
-
     private MessageRepository(AppDatabase database) {
         mDatabase = database;
-
-        conversations = new ArrayList<>();
-        ArrayList<String> mess = new ArrayList<>();
-        mess.add("asdfsadf");
-        List<ConversationWithMessages> conversation;
-        conversations.add(new ConversationEntity(1, "Michael"));
-        conversations.add(new ConversationEntity(2, "John"));
-
-        liveConversations = new MutableLiveData<>();
-        liveConversations.setValue(conversations);
     }
 
     public LiveData<List<ConversationEntity>> getConversations() {
@@ -69,6 +54,10 @@ public class MessageRepository {
                         return mDatabase.messageDao().insertMessages(messageEntities);
                     }
                 });
+    }
+
+    public LiveData<ConversationWithMessages> getConversationWithMessages(long id) {
+        return mDatabase.conversationDao().getConversationWithMessages(id);
     }
 
     public Completable deleteAllConversations() {

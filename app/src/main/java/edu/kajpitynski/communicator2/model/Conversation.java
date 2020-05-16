@@ -1,8 +1,6 @@
 package edu.kajpitynski.communicator2.model;
 
-import java.util.List;
-
 public interface Conversation {
-    public int getId();
+    public long getId();
     public String getRecipient();
 }

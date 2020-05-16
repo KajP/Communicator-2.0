@@ -41,6 +41,14 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HistoryActivity"/>
         </activity>
+
+        <activity
+            android:name=".ChatHistoryActivity"
+            android:parentActivityName=".HistoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HistoryActivity" />
+        </activity>
     </application>
 
 </manifest>
